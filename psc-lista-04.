@@ -1,1 +1,320 @@
+1.  import java.util.Scanner;
 
+public class NotaValida {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        float nota;
+
+        do {
+            System.out.print("Digite uma nota entre 0 e 10: ");
+            nota = scanner.nextFloat();
+
+            if (nota < 0 || nota > 10) {
+                System.out.println("Valor inválido! A nota deve estar entre 0 e 10.");
+            }
+
+        } while (nota < 0 || nota > 10);
+
+        System.out.println("Nota válida recebida: " + nota);
+        scanner.close();
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+2. import java.util.Scanner;
+
+public class LoginSeguro {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String usuario, senha;
+
+        do {
+            System.out.print("Digite o nome de usuário: ");
+            usuario = scanner.nextLine();
+
+            System.out.print("Digite a senha: ");
+            senha = scanner.nextLine();
+
+            if (usuario.equals(senha)) {
+                System.out.println("Erro: a senha não pode ser igual ao nome de usuário. Tente novamente.");
+            }
+
+        } while (usuario.equals(senha));
+
+        System.out.println("Usuário e senha cadastrados com sucesso!");
+        scanner.close();
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+3. import java.util.Scanner;
+
+public class ValidaInformacoes {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String nome;
+        int idade;
+        double salario;
+        char sexo;
+        char estadoCivil;
+
+        do {
+            System.out.print("Digite seu nome (mais de 3 caracteres): ");
+            nome = scanner.nextLine();
+            if (nome.length() <= 3) {
+                System.out.println("Erro: o nome deve ter mais de 3 caracteres.");
+            }
+        } while (nome.length() <= 3);
+
+        do {
+            System.out.print("Digite sua idade (entre 0 e 150): ");
+            idade = scanner.nextInt();
+            if (idade < 0 || idade > 150) {
+                System.out.println("Erro: idade inválida.");
+            }
+        } while (idade < 0 || idade > 150);
+
+        do {
+            System.out.print("Digite seu salário (maior que zero): ");
+            salario = scanner.nextDouble();
+            if (salario <= 0) {
+                System.out.println("Erro: o salário deve ser maior que zero.");
+            }
+        } while (salario <= 0);
+
+        scanner.nextLine();
+
+        do {
+            System.out.print("Digite seu sexo ('f' para feminino ou 'm' para masculino): ");
+            sexo = scanner.nextLine().toLowerCase().charAt(0);
+            if (sexo != 'f' && sexo != 'm') {
+                System.out.println("Erro: sexo inválido.");
+            }
+        } while (sexo != 'f' && sexo != 'm');
+
+        do {
+            System.out.print("Digite seu estado civil ('s' - solteiro, 'c' - casado, 'v' - viúvo, 'd' - divorciado): ");
+            estadoCivil = scanner.nextLine().toLowerCase().charAt(0);
+            if (estadoCivil != 's' && estadoCivil != 'c' && estadoCivil != 'v' && estadoCivil != 'd') {
+                System.out.println("Erro: estado civil inválido.");
+            }
+        } while (estadoCivil != 's' && estadoCivil != 'c' && estadoCivil != 'v' && estadoCivil != 'd');
+
+        System.out.println("\nInformações validadas com sucesso:");
+        System.out.println("Nome: " + nome);
+        System.out.println("Idade: " + idade);
+        System.out.println("Salário: R$" + salario);
+        System.out.println("Sexo: " + (sexo == 'f' ? "Feminino" : "Masculino"));
+        System.out.println("Estado Civil: " + estadoCivil);
+
+        scanner.close();
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+4. public class CrescimentoPopulacional {
+    public static void main(String[] args) {
+        int populacaoA = 80000;
+        int populacaoB = 200000;
+        double taxaA = 0.03;   // 3%
+        double taxaB = 0.015;  // 1.5%
+        int anos = 0;
+
+        while (populacaoA <= populacaoB) {
+            populacaoA += populacaoA * taxaA;
+            populacaoB += populacaoB * taxaB;
+            anos++;
+        }
+
+        System.out.println("Serão necessários " + anos + " anos para que a população do país A ultrapasse ou iguale a do país B.");
+        System.out.println("População de A: " + populacaoA);
+        System.out.println("População de B: " + populacaoB);
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+5. import java.util.Scanner;
+
+public class CrescimentoPopulacionalInterativo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char repetir;
+
+        do {
+            int populacaoA, populacaoB;
+            double taxaA, taxaB;
+
+            // Validação das populações
+            do {
+                System.out.print("Informe a população do país A (deve ser maior que 0): ");
+                populacaoA = scanner.nextInt();
+
+                System.out.print("Informe a população do país B (deve ser maior que 0): ");
+                populacaoB = scanner.nextInt();
+
+                if (populacaoA <= 0 || populacaoB <= 0) {
+                    System.out.println("Erro: as populações devem ser maiores que zero.");
+                } else if (populacaoA >= populacaoB) {
+                    System.out.println("Erro: a população do país A deve ser menor que a do país B.");
+                }
+            } while (populacaoA <= 0 || populacaoB <= 0 || populacaoA >= populacaoB);
+
+            // Validação das taxas
+            do {
+                System.out.print("Informe a taxa de crescimento anual do país A (em %): ");
+                taxaA = scanner.nextDouble();
+
+                System.out.print("Informe a taxa de crescimento anual do país B (em %): ");
+                taxaB = scanner.nextDouble();
+
+                if (taxaA <= 0 || taxaB <= 0) {
+                    System.out.println("Erro: as taxas devem ser maiores que zero.");
+                }
+            } while (taxaA <= 0 || taxaB <= 0);
+
+            int anos = 0;
+            int a = populacaoA;
+            int b = populacaoB;
+
+            while (a <= b) {
+                a += a * taxaA / 100;
+                b += b * taxaB / 100;
+                anos++;
+            }
+
+            System.out.println("\nSerá necessário " + anos + " ano(s) para que a população de A ultrapasse ou iguale a de B.");
+            System.out.println("População final de A: " + a);
+            System.out.println("População final de B: " + b);
+
+            // Pergunta se deseja repetir
+            System.out.print("\nDeseja repetir a operação? (s/n): ");
+            repetir = scanner.next().toLowerCase().charAt(0);
+            scanner.nextLine(); // Limpa o buffer
+
+        } while (repetir == 's');
+
+        scanner.close();
+        System.out.println("Programa encerrado.");
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+6. //um abaixo do outro
+
+public class NumerosUmAbaixoDoOutro {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 20; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
+//um do lado do outro
+
+public class NumerosUmAoLadoDoOutro {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 20; i++) {
+            System.out.print(i + " "); 
+        }
+        System.out.println(); 
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+7. import java.util.Scanner;
+
+public class MaiorNumero {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int numero, maior = Integer.MIN_VALUE;
+
+        System.out.println("Digite 5 números:");
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.print("Número " + i + ": ");
+            numero = scanner.nextInt();
+
+            if (numero > maior) {
+                maior = numero;
+            }
+        }
+
+        System.out.println("O maior número informado foi: " + maior);
+        scanner.close();
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+8. import java.util.Scanner;
+
+public class SomaEMedia {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int numero;
+        int soma = 0;
+
+        System.out.println("Digite 5 números:");
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.print("Número " + i + ": ");
+            numero = scanner.nextInt();
+            soma += numero;
+        }
+
+        double media = soma / 5.0; // Calcula a média com precisão decimal
+
+        System.out.println("Soma dos números: " + soma);
+        System.out.println("Média dos números: " + media);
+
+        scanner.close();
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+9. public class NumerosImpares {
+    public static void main(String[] args) {
+        System.out.println("Números ímpares entre 1 e 50:");
+
+        for (int i = 1; i <= 50; i++) {
+            if (i % 2 != 0) { // Verifica se o número é ímpar
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+10. import java.util.Scanner;
+
+public class IntervaloNumeros {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o primeiro número inteiro: ");
+        int numero1 = scanner.nextInt();
+
+        System.out.print("Digite o segundo número inteiro: ");
+        int numero2 = scanner.nextInt();
+
+        int inicio = Math.min(numero1, numero2);
+        int fim = Math.max(numero1, numero2);
+
+        System.out.println("Números inteiros no intervalo entre " + inicio + " e " + fim + ":");
+
+        for (int i = inicio + 1; i < fim; i++) {
+            System.out.println(i);
+        }
+
+        scanner.close();
+    }
+}
